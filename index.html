@@ -343,6 +343,7 @@ a:focus-visible,summary:focus-visible,input:focus-visible{outline:1px solid var(
     <a href="#superficie">superfície</a>
     <a href="#logs">engajamentos</a>
     <a href="#arsenal">arsenal</a>
+    <a href="#outros">outros</a>
     <a href="#conectar">conectar</a>
   </nav>
   <div class="power" aria-hidden="true"></div>
@@ -669,7 +670,6 @@ a:focus-visible,summary:focus-visible,input:focus-visible{outline:1px solid var(
         </dl>
       </details>
     </div>
-    <div class="prose" style="margin-top:22px"><p>Troque estes registros pelos seus achados reais quando os relatórios estiverem liberados — a estrutura já está pronta para receber.</p></div>
   </section>
 
   <section id="arsenal">
@@ -695,8 +695,44 @@ a:focus-visible,summary:focus-visible,input:focus-visible{outline:1px solid var(
     </div>
   </section>
 
+  <section id="outros">
+    <div class="layer"><span class="n">層 05</span><h2>fora do escopo web</h2><div class="rule"></div></div>
+    <div class="prose"><p>Nem tudo aqui é aplicação web. Dois projetos que ficam de fora da trilha principal, mas mostram o resto do trabalho: um do lado de quem ataca host, outro do lado de quem defende a rede.</p></div>
+
+    <div class="log">
+      <details class="entry">
+        <summary>
+          <span class="tgt">win7pentest — exploração básica com Metasploit</span>
+          <span class="tag high">ofensivo · host</span>
+          <span class="arrow" aria-hidden="true">abrir</span>
+        </summary>
+        <dl class="detail">
+          <dt>alvo</dt><dd>Máquina Windows 7 em laboratório, foco em exploração via payload reverso.</dd>
+          <dt>cadeia</dt><dd>Payload Meterpreter gerado com <code>msfvenom</code> (x86, <code>reverse_tcp</code>) → transferência pro alvo → listener configurado em <code>exploit/multi/handler</code> → shell reverso estabelecido → reconhecimento pós-exploração (<code>getuid</code>, <code>ps</code>, captura de tela) → tentativa de escalonamento de privilégio.</dd>
+          <dt>ferramentas</dt><dd><code>Metasploit Framework</code>, <code>msfvenom</code>, Meterpreter.</dd>
+          <dt>nota</dt><dd>Escalonamento em Windows 7 esbarra no UAC — documentado como limitação encontrada, não como falha contornada.</dd>
+        </dl>
+      </details>
+
+      <details class="entry">
+        <summary>
+          <span class="tgt">InsiderShield — threat hunting com Wazuh, Sysmon e YARA</span>
+          <span class="tag">defensivo · SOC</span>
+          <span class="arrow" aria-hidden="true">abrir</span>
+        </summary>
+        <dl class="detail">
+          <dt>objetivo</dt><dd>Framework de detecção de ameaça interna e movimentação lateral em ambiente corporativo simulado.</dd>
+          <dt>pilha</dt><dd><code>Wazuh</code> como SIEM, <code>Sysmon</code> para telemetria detalhada de eventos, <code>YARA</code> para detecção de malware fileless, correlação visualizada no <code>ELK Stack</code>.</dd>
+          <dt>automação</dt><dd>Script <code>auto-isolate.ps1</code> isola automaticamente a máquina comprometida assim que uma regra dispara — resposta a incidente sem intervenção manual.</dd>
+          <dt>validação</dt><dd>Testado contra simulação real de ataque (<code>APTSimulator</code>) e amostra <code>EICAR</code>; eventos correlacionados com técnicas MITRE ATT&CK (T1087, T1059.003).</dd>
+          <dt>regras</dt><dd><code>local_rules.xml</code> (Wazuh) e <code>yara-rules.yar</code> customizadas para o cenário.</dd>
+        </dl>
+      </details>
+    </div>
+  </section>
+
   <section id="conectar">
-    <div class="layer"><span class="n">層 05</span><h2>conectar</h2><div class="rule"></div></div>
+    <div class="layer"><span class="n">層 06</span><h2>conectar</h2><div class="rule"></div></div>
     <div class="prose"><p>Para escopo, proposta ou só para trocar ideia sobre um achado — as linhas estão abertas.</p></div>
     <div class="wire">
       <a href="mailto:gabrieluiz58@gmail.com"><span class="k">email</span><span class="v">gabrieluiz58@gmail.com</span></a>
@@ -833,6 +869,36 @@ a:focus-visible,summary:focus-visible,input:focus-visible{outline:1px solid var(
       setTimeout(function(){line('varredura concluída. 1 serviço não identificado.','dim')},reduce?0:220*(rows.length+1));
     },
     lain:function(){
+      var art=[
+        '**********#**************##********************#******',
+        '**************************#*********************#*****',
+        '*************************************************#****',
+        '**************++++*+*==+******************************',
+        '***********+++++++++:   -*++++++++**++**+=++++********',
+        '*****#*++*==+++=+-==.   :+:-======++++++=-==+++*++****',
+        '******+++*=======.=-    :=.------------==--===++++++**',
+        '*****++==*-==--=:.=-    :- :-------:---=+=-=====++==**',
+        '****+==-+*-----=..=:    -- :-=-----:---+++--========+*',
+        '***+==-=++------::--::. -: :--:::.----:=+=--=---=*-==*',
+        '***+=-:+++-==:::  :: .  -. -::::::-----=*+=-=---**===+',
+        '*****:-++++-:::-==-=:. ..  :.... .. ...=:.===--=#++-++',
+        '***#*=-==--..+ .=====.     .    .:-====--.-==--+*+*-+*',
+        '******+++- . .  =++=.           . -===- ++:==--**+*-+*',
+        '*******+.:      ....              .==:  .:::=-=****-**',
+        '********:   .                         .. .==---=+**+**',
+        '*******#*-:.:                            :=--::*******',
+        '*******#+-=-+-             .            .:-===+*#*****',
+        '*******#=-==-+.                        .======#*#*****',
+        '********====-==.                      :+#=-==+#*******',
+        '*******+++==+===-.                 .-=+#*-===*********',
+        '*********++=*+==+-..            .:=+===+*-==+#********',
+        '*******++*+++++++- ..         ::=*+=+=*++-==*#********'
+      ];
+      art.forEach(function(l){line(esc(l),'vio')});
+      line('','dim');
+      line('serial experiments lain','warn');
+      line('シリアル・エクスペリメンツ・レイン','dim');
+      line('','dim');
       line('と　あ　な　た　は　だ　れ　？','vio');
       line('e você — quem é você?','dim');
     },
